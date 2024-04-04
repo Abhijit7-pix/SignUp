@@ -36,8 +36,3 @@ const firebaseConfig = {
   function redirect_sign() {
     window.location.href = 'signup.html'; // Change 'signup.html' to the URL of your signup page
   }
-
-  // function redirect_login() {
-    
-  //   window.location.href = 'Index.html';
-  // }

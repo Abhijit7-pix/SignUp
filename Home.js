@@ -11,3 +11,34 @@ logoutButton.addEventListener('click', () => {
         console.error('Error signing out:', error);
     });
 });
+document.getElementById('card-1').addEventListener('click', handleCard_1);
+document.getElementById('card-2').addEventListener('click', handleCard_2);
+document.getElementById('card-3').addEventListener('click', handleCard_3);
+document.getElementById('card-4').addEventListener('click', handleCard_4);
+// function handleCard_1(){
+//     document.getElementById('message').innerText = 'Click 1  successful!';
+//         alert("You clicked on Card 1");
+      
+      
+// }
+function handleCard_1() {
+    alert("You clicked on Card 1");
+}
+function handleCard_2(){
+    // document.getElementById('message').innerText = 'Click 1  successful!';
+        alert("You clicked on Card 2");
+      
+      
+}
+function handleCard_3(){
+    // document.getElementById('message').innerText = 'Click 1  successful!';
+        alert("You clicked on Card 3");
+      
+      
+}
+function handleCard_4(){
+    // document.getElementById('message').innerText = 'Click 1  successful!';
+        alert("You clicked on Card 4");
+      
+      
+}

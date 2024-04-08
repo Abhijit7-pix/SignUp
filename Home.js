@@ -22,23 +22,22 @@ document.getElementById('card-4').addEventListener('click', handleCard_4);
       
 // }
 function handleCard_1() {
-    alert("You clicked on Card 1");
+    window.location.href ="card_view_1.html";
 }
 function handleCard_2(){
-    // document.getElementById('message').innerText = 'Click 1  successful!';
-        alert("You clicked on Card 2");
-      
+    window.location.href ="card_view_2.html";
+
       
 }
 function handleCard_3(){
-    // document.getElementById('message').innerText = 'Click 1  successful!';
-        alert("You clicked on Card 3");
+    window.location.href ="card_view_3.html";
+
       
       
 }
 function handleCard_4(){
-    // document.getElementById('message').innerText = 'Click 1  successful!';
-        alert("You clicked on Card 4");
+    window.location.href ="card_view_4.html";
+
       
       
 }

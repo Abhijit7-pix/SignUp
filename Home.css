@@ -1,3 +1,8 @@
+
+body {
+  padding-left: 200px; /* Add padding to the left */
+  margin: 0; /* Reset default margin */
+}
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -10,7 +15,9 @@
   
   .card {
     width: calc(50% - 20px); /* Adjust the width as needed */
-    margin: 10px;
+    height: 300px; /* Adjust the width as needed */
+
+    margin: 50px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;

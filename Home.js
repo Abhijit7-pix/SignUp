@@ -40,33 +40,46 @@ function handleCard_4(){
 }
 const database = firebase.database();
 
-// Function to fetch scores from Firebase and display them on the web page
-function displayScores() {
-    // Get a reference to the scores node
-    const scoresRef = database.ref('scores');
+// Function to fetch the latest score from Firebase and display it on the web page
+function displayLatestScore() {
+    // Get a reference to the scores node and order it by timestamp in descending order
+    const scoresRef = database.ref('scores').orderByChild('timestamp').limitToLast(1);
 
     // Listen for changes in the scores node
     scoresRef.on('value', (snapshot) => {
-        // Clear previous scores
+        // Clear previous score
         document.getElementById('scoresContainer').innerHTML = '';
 
-        // Iterate through each score in the snapshot
-        snapshot.forEach((childSnapshot) => {
-            // Get score data
-            const scoreData = childSnapshot.val();
-            const userId = scoreData.userId;
-            const score = scoreData.score;
-            const timestamp = scoreData.timestamp;
+        // Check if there is any score data
+        if (snapshot.exists()) {
+            // Get the latest score data
+            snapshot.forEach((childSnapshot) => {
+                const latestScoreData = childSnapshot.val();
+                const latestUserId = latestScoreData.userId;
+                const latestScore = latestScoreData.score;
+                const latestTimestamp = latestScoreData.timestamp;
 
-            // Create HTML elements to display score data
-            const scoreElement = document.createElement('div');
-            scoreElement.innerHTML = `<p>User ID: ${userId}, Score: ${score}, Timestamp: ${timestamp}</p>`;
+                // Create HTML elements to display the latest score data
+                const scoreElement = document.createElement('div');
+                let scoreHTML = `<p>User ID: ${latestUserId}, Score: ${latestScore}`;
+                
+                // Add timestamp to HTML if it exists
+                if (latestTimestamp !== undefined) {
+                    scoreHTML += `, Timestamp: ${latestTimestamp}`;
+                }
 
-            // Append score element to scores container
-            document.getElementById('scoresContainer').appendChild(scoreElement);
-        });
+                scoreHTML += `</p>`;
+                scoreElement.innerHTML = scoreHTML;
+
+                // Append the score element to the scores container
+                document.getElementById('scoresContainer').appendChild(scoreElement);
+            });
+        } else {
+            // If there is no score data, display a message
+            document.getElementById('scoresContainer').innerHTML = '<p>No scores available.</p>';
+        }
     });
 }
 
-// Call the function to display scores
-displayScores();
+// Call the function to display the latest score
+displayLatestScore();

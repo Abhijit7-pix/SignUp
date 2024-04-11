@@ -3,8 +3,45 @@ body {
   padding-left: 200px; /* Add padding to the left */
   margin: 0; /* Reset default margin */
 }
+
 .card-container {
-    display: flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.card {
+  width: calc(50% - 20px); /* Adjust the width as needed */
+  height: 300px; /* Adjust the height as needed */
+  margin: 50px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  body {
+    padding-left: 0; /* Remove padding from the left */
+  }
+
+  .card {
+    width: calc(100% - 40px); /* Adjust the width to occupy full width */
+    margin: 20px 0; /* Adjust margin for better spacing */
+  }
+}
+/* 
+body {
+  padding-left: 200px; /* Add padding to the left */
+  margin: 0; /* Reset default margin */
+}
+.card-container {
+    display: 70%;
     flex-wrap: wrap;
   }
   
@@ -23,4 +60,4 @@ body {
     border-radius: 5px;
     box-sizing: border-box;
   }
-  
+   */

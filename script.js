@@ -11,7 +11,21 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
   const auth = firebase.auth();
+  //auto fill gmail.com
+  function handleEmailInput(event) {
+    const emailInput = document.getElementById('email');
+    const enteredEmail = emailInput.value.trim(); // Trim any whitespace
   
+    // Check if the entered email ends with "@" symbol and the last character is not a backspace
+    if (enteredEmail.endsWith('@') && event.inputType !== 'deleteContentBackward') {
+        // Autofill the remaining part of the email
+        emailInput.value = enteredEmail + 'gmail.com'; // Change 'gmail.com' to your desired default domain
+    }
+  }
+  
+  // Assuming 'email' is the ID of your email input field
+  const emailInput = document.getElementById('email');
+  emailInput.addEventListener('input', handleEmailInput);
   
   document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent form submission
@@ -33,6 +47,6 @@ const firebaseConfig = {
         document.getElementById('message').innerText = errorMessage;
       });
   });
-  function redirect_sign() {
-    window.location.href = 'signup.html'; // Change 'signup.html' to the URL of your signup page
-  }
+  // function redirect_sign() {
+  //   window.location.href = 'signup.html'; // Change 'signup.html' to the URL of your signup page
+  // }

@@ -2,6 +2,7 @@
 body {
   padding-left: 200px; /* Add padding to the left */
   margin: 0; /* Reset default margin */
+  background-color: cornflowerblue;
 }
 
 .card-container {
@@ -35,9 +36,9 @@ body {
     margin: 20px 0; /* Adjust margin for better spacing */
   }
 }
-/* 
+ 
 body {
-  padding-left: 200px; /* Add padding to the left */
+  padding-left: 200px;
   margin: 0; /* Reset default margin */
 }
 .card-container {
@@ -60,4 +61,4 @@ body {
     border-radius: 5px;
     box-sizing: border-box;
   }
-   */
+   

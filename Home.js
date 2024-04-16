@@ -54,14 +54,14 @@ firebase.auth().onAuthStateChanged(async (user) => {
             
             // Get user name and email
             const userName = userData.name || "No name provided";
-            const userEmail = user.email || "No email provided";
+            const userEmail = userData.email || "No email provided";
 
             // Update HTML content to display user data
             document.getElementById('user-name').innerText = userName;
             document.getElementById('user-email').innerText = userEmail;
 
             // Get a reference to the scores node for the current user
-            const userScoresRef = firebase.database().ref('scores').orderByChild('userId').equalTo(user.uid).limitToLast(1);
+            const userScoresRef = firebase.database().ref('scores/' + user.uid).orderByKey().limitToLast(1);
 
             // Listen for changes in the scores node for the current user
             userScoresRef.on('value', (snapshot) => {
@@ -71,26 +71,25 @@ firebase.auth().onAuthStateChanged(async (user) => {
                 // Check if there is any score data for the current user
                 if (snapshot.exists()) {
                     // Get the latest score data for the current user
-                    snapshot.forEach((childSnapshot) => {
-                        const latestScoreData = childSnapshot.val();
-                        const latestScore = latestScoreData.score;
-                        const latestTimestamp = latestScoreData.timestamp;
+                    const latestScoreData = snapshot.val();
+                    const latestScore = latestScoreData.score;
+                    const latestTimestamp = latestScoreData.timestamp;
+                    alert("Total points: ");
+                    // Create HTML elements to display the latest score data for the current user
+                    const scoreElement = document.createElement('div');
+                    let scoreHTML = `<p>Your latest score: ${latestScore}`;
 
-                        // Create HTML elements to display the latest score data for the current user
-                        const scoreElement = document.createElement('div');
-                        let scoreHTML = `<p>Your latest score: ${latestScore}`;
+                    // Add timestamp to HTML if it exists
+                    if (latestTimestamp !== undefined) {
+                        scoreHTML += `, Timestamp: ${latestTimestamp}`;
+                    }
 
-                        // Add timestamp to HTML if it exists
-                        if (latestTimestamp !== undefined) {
-                            scoreHTML += `, Timestamp: ${latestTimestamp}`;
-                        }
+                    scoreHTML += `</p>`;
+                    scoreElement.innerHTML = scoreHTML;
 
-                        scoreHTML += `</p>`;
-                        scoreElement.innerHTML = scoreHTML;
-
-                        // Append the score element to the scores container
-                        document.getElementById('scoresContainer').appendChild(scoreElement);
-                    });
+                    // Append the score element to the scores container
+                    document.getElementById('scoresContainer').appendChild(scoreElement);
+                    
                 } else {
                     // If there is no score data for the current user, display a message
                     document.getElementById('scoresContainer').innerHTML = '<p>No scores available for you.</p>';
